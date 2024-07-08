@@ -1,0 +1,11 @@
+.buttonSalvar {
+    border-radius: 45px;
+    background-color: #8692CE;
+    color: white;
+    border: 1px solid black;
+    padding: 30px 80px;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: 15px;
+}
