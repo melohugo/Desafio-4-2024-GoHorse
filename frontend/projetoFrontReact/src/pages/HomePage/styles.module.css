@@ -1,0 +1,59 @@
+.h1 {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    font-size: 24px;
+    color: #1a1a1a;
+    display: grid;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px;
+    height: 100px;
+    margin-left: 50px;
+    margin-top: 40px;
+}
+
+.h2 {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 450;
+    font-size: 50px;
+    display: grid;
+    text-align: center;
+    margin-top: -80px;
+}
+
+.table {
+    width: 85%;
+    border: 1px solid black;
+    padding: 20px;
+    margin: 80px;
+    background-color: #D9D9D9;
+    border-collapse: collapse;
+    margin-left: 80px;
+}
+
+.table th,
+.table td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+    text-align: center;
+}
+
+.button{
+    border-radius: 45px;
+    background-color: #8692CE;
+    color: white;
+    border: 1px solid black;
+    padding: 10px 50px;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: 15px;
+    display: grid;
+    place-content: center; 
+    position: fixed; 
+    top: 80px; 
+    right: 70px; 
+}

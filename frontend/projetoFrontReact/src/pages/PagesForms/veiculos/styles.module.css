@@ -1,0 +1,37 @@
+.h1 {
+    font-size: 20px;
+}
+
+p{ 
+    text-align: center;
+    width: 100px;
+}
+
+.conteiner {
+    width: 500px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    width: 200px;
+}
+
+label input {
+    padding: 5px;
+    background-color: #fff;
+    border: 1px solid black;
+    color: black;
+    width: 40px;
+}
