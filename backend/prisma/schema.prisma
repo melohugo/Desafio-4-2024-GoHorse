@@ -10,8 +10,37 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Proprietario {
+  cpf             String   @id @db.Decimal(11, 0)
+  nome            String   @db.VarChar(50)
+  tipoCnh         String   @db.Char(1)
+  vencimentoCnh   DateTime @db.Date
 
-model Todo {
-  id    Int    @id @default(autoincrement()) @db.UnsignedInt
-  title String @db.VarChar(50)
+  Veiculos        Veiculo[]
+}
+
+model Veiculo {
+  placa           String   @id @db.Decimal(7, 0)
+  modelo          String   @db.VarChar(50)
+  marca           String   @db.VarChar(50)
+  ano             DateTime @db.Date
+  cor             String   @db.VarChar(30)
+  cpf             String   @db.Decimal(11, 0)
+
+  proprietario    Proprietario @relation(fields: [cpf], references: [cpf], onDelete: Cascade, onUpdate: Cascade)
+
+  Multas          Multa[]
+}
+
+model Multa {
+  IdMulta         Int      @id @default(autoincrement())
+  valor           Decimal  @db.Decimal(6, 2)
+  pontos          Decimal  @db.Decimal(2, 0)
+  data            DateTime @db.Date
+  tipoInfracao    String   @db.VarChar(50)
+  placa           String   @db.Decimal(7, 0)
+
+  @@unique([data, placa, tipoInfracao])
+
+  veiculo         Veiculo  @relation(fields: [placa], references: [placa], onDelete: Restrict, onUpdate: Cascade)
 }
