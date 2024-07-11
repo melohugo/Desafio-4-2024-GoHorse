@@ -6,6 +6,7 @@ function BotaoSair() {
   return (
     /* Este botão só vai para a page de HomeProprietario */
     <Link className={styles.buttonSair}  to={'/'}>X</Link>
+
   );
 }
 export default BotaoSair;
