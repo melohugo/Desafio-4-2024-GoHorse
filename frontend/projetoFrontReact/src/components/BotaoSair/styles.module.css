@@ -11,8 +11,45 @@
     display: grid;
     place-content: center; 
     position: fixed; 
-    top: 30px; 
-    left: 450px; 
+    top: 50px; 
+    left: 800px; 
     font-size: 15px;
 }
 
+.modal {
+    position: fixed;
+    top: 30%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.modalContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(155, 155, 155);
+}
+
+.confirmButton,
+.cancelButton {
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.confirmButton {
+    background-color: green;
+    color: white;
+}
+
+.cancelButton {
+    background-color: red;
+    color: white;
+}
