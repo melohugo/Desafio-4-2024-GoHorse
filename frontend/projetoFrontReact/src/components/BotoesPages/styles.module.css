@@ -13,7 +13,6 @@
     position: fixed; 
     top: 80px; 
     right: 70px; 
-    text-decoration: none;
 }
 
 .buttonVoltar {
@@ -31,6 +30,4 @@
     position: fixed; 
     top: 80px; 
     right: 280px; 
-    text-decoration: none;
-
 }
