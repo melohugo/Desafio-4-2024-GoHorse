@@ -19,6 +19,26 @@ export async function findAllProprietario(): Promise<InfoProprietario[]> {
     return todos;
 }
 
+export async function createProprietario(info: InfoProprietario): Promise<InfoProprietario | null> {
+  const todo = await prisma.proprietario.create({
+    data: {
+        nome: info.nome,
+        cpf: info.cpf,
+        tipoCnh: info.tipoCnh,
+        vencimentoCnh: info.vencimentoCnh,
+    },
+    select: {
+        nome: true,   
+        cpf: true,   
+        tipoCnh: true,   
+        vencimentoCnh: true,   
+    },
+  });
+
+  return todo;
+}
+
+
 /*
 export async function list(userId: number): Promise<TodoItem[]> {
   const todos = await prisma.todo.findMany({

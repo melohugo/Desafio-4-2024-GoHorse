@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { findAllProprietario } from "../business/proprietario.business";
+import { createProprietario, findAllProprietario } from "../business/proprietario.business";
 import createHttpError from "http-errors";
-import { TodoCreateSchema, TodoIdSchema } from "../schemas/proprietario.schema";
+import { InfoProprietarioSchema, TodoCreateSchema, TodoIdSchema } from "../schemas/proprietario.schema";
 
 const router = Router();
 
@@ -10,6 +10,19 @@ router.get("/proprietarios", async (req, res) => {
     // Validate
     // Execute
     const dados = await findAllProprietario();
+
+    // Send 
+
+    return res.status(200).json(dados);
+
+});
+
+router.post("/criar", async (req, res) => {
+    // Validate
+    const info = InfoProprietarioSchema.parse(req.body);
+
+    // Execute
+    const dados = await createProprietario(info);
 
     // Send 
 
