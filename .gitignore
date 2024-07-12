@@ -155,6 +155,10 @@ dist
 # Built Visual Studio Code Extensions
 *.vsix
 
+# Migrations
+migrations/
+datadir/
+
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
