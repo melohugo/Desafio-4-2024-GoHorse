@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createVeiculo } from "../business/veiculo.business";
+import { createVeiculo, findAllVeiculos } from "../business/veiculo.business";
 import createHttpError from "http-errors";
 import { InfoVeiculoSchema, CpfDonoSchema } from "../schemas/veiculo.schema";
 
@@ -16,6 +16,18 @@ router.post("/:cpf/cadastrar", async (req, res) => {
     // Send 
     return res.status(200).json(dados);
 });
+
+router.get("/:cpf", async (req, res) => {
+    // Validate
+    const cpf = CpfDonoSchema.parse(req.params.cpf);
+
+    // Execute
+    const dados = await findAllVeiculos(cpf);
+
+    // Send 
+    return res.status(200).json(dados);
+});
+
 
 
 export default router;

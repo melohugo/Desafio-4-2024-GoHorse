@@ -12,11 +12,27 @@ export async function createVeiculo(info: InfoVeiculo, cpf: CpfDono): Promise<In
         cor: info.cor,
         cpf: cpf,
     },
-    //select: {
-       // placa: info.placa  
-    //},
   });
 
   return todo;
 }
 
+export async function findAllVeiculos(cpf: CpfDono): Promise<InfoVeiculo[]> {
+    const todo = await prisma.veiculo.findMany({
+        where: {
+            cpf: cpf,
+        },
+        orderBy: {
+            ano: "asc",            
+        },
+        select: {
+            placa: true,
+            marca: true,
+            modelo: true,
+            ano: true,
+            cor: true,
+        },
+    });
+
+  return todo;
+}
