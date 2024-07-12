@@ -6,7 +6,7 @@ export const InfoProprietarioSchema = z.object({
     nome: z.string(),
     cpf: z.string(), 
     tipoCnh: z.string().max(1),
-    vencimentoCnh: z.date(),
+    vencimentoCnh: z.coerce.date(),
 });
 
 export const TodoItemSchema = z.object({
