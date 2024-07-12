@@ -1,7 +1,45 @@
-import { type TodoCreateDTO, type TodoItem } from "../schemas/todo.schema";
+import { type InfoProprietario} from "../schemas/proprietario.schema";
 import { prisma } from "../prisma";
 import createHttpError from "http-errors";
 
+
+export async function findAllProprietario(): Promise<InfoProprietario[]> {
+    const todos = await prisma.proprietario.findMany({
+        orderBy: {
+            nome: "asc",
+        },
+        select: {
+            nome: true,   
+            cpf: true,   
+            tipoCnh: true,   
+            vencimentoCnh: true,   
+        }
+    });
+
+    return todos;
+}
+
+export async function createProprietario(info: InfoProprietario): Promise<InfoProprietario | null> {
+  const todo = await prisma.proprietario.create({
+    data: {
+        nome: info.nome,
+        cpf: info.cpf,
+        tipoCnh: info.tipoCnh,
+        vencimentoCnh: info.vencimentoCnh,
+    },
+    select: {
+        nome: true,   
+        cpf: true,   
+        tipoCnh: true,   
+        vencimentoCnh: true,   
+    },
+  });
+
+  return todo;
+}
+
+
+/*
 export async function list(userId: number): Promise<TodoItem[]> {
   const todos = await prisma.todo.findMany({
     where: {
@@ -82,4 +120,4 @@ export async function deleteTodo(id: number, userId: number): Promise<void> {
       userId,
     },
   });
-}
+} */

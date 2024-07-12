@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Proprietario {
-  cpf             String   @id @db.Decimal(11, 0)
+  cpf             String   @id @db.VarChar(11) 
   nome            String   @db.VarChar(50)
   tipoCnh         String   @db.Char(1)
   vencimentoCnh   DateTime @db.Date
@@ -20,12 +20,12 @@ model Proprietario {
 }
 
 model Veiculo {
-  placa           String   @id @db.Decimal(7, 0)
+  placa           String    @id @db.VarChar(7)
   modelo          String   @db.VarChar(50)
   marca           String   @db.VarChar(50)
   ano             DateTime @db.Date
   cor             String   @db.VarChar(30)
-  cpf             String   @db.Decimal(11, 0)
+  cpf             String   @db.VarChar(11)
 
   proprietario    Proprietario @relation(fields: [cpf], references: [cpf], onDelete: Cascade, onUpdate: Cascade)
 
@@ -38,7 +38,7 @@ model Multa {
   pontos          Decimal  @db.Decimal(2, 0)
   data            DateTime @db.Date
   tipoInfracao    String   @db.VarChar(50)
-  placa           String   @db.Decimal(7, 0)
+  placa           String    @db.VarChar(7)
 
   @@unique([data, placa, tipoInfracao])
 
