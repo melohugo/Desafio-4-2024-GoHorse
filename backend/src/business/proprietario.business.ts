@@ -1,10 +1,10 @@
-import { type TodoCreateDTO, type TodoItem , type InfoProprietario} from "../schemas/todo.schema";
+import { type InfoProprietario} from "../schemas/proprietario.schema";
 import { prisma } from "../prisma";
 import createHttpError from "http-errors";
 
 
 export async function findAllProprietario(): Promise<InfoProprietario[]> {
-    const todos = await prisma.Proprietario.findMany({
+    const todos = await prisma.proprietario.findMany({
         orderBy: {
             nome: "asc",
         },
@@ -19,6 +19,7 @@ export async function findAllProprietario(): Promise<InfoProprietario[]> {
     return todos;
 }
 
+/*
 export async function list(userId: number): Promise<TodoItem[]> {
   const todos = await prisma.todo.findMany({
     where: {
@@ -99,4 +100,4 @@ export async function deleteTodo(id: number, userId: number): Promise<void> {
       userId,
     },
   });
-}
+} */

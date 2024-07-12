@@ -2,12 +2,12 @@ import { z } from "zod";
 
 // Schemas
 
-export const InfoProprietarioSchema = z.array(z.object({
-    cpf: z.coerce.string(), 
+export const InfoProprietarioSchema = z.object({
     nome: z.string(),
+    cpf: z.string(), 
     tipoCnh: z.string().max(1),
     vencimentoCnh: z.date(),
-}));
+});
 
 export const TodoItemSchema = z.object({
   id: z.number().int().positive(),

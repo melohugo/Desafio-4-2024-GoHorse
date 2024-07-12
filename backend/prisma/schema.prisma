@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Proprietario {
-  cpf             Decimal   @id @db.Decimal(11, 0)
+  cpf             String   @id @db.VarChar(11) 
   nome            String   @db.VarChar(50)
   tipoCnh         String   @db.Char(1)
   vencimentoCnh   DateTime @db.Date
@@ -25,7 +25,7 @@ model Veiculo {
   marca           String   @db.VarChar(50)
   ano             DateTime @db.Date
   cor             String   @db.VarChar(30)
-  cpf             Decimal   @db.Decimal(11, 0)
+  cpf             String   @db.VarChar(11)
 
   proprietario    Proprietario @relation(fields: [cpf], references: [cpf], onDelete: Cascade, onUpdate: Cascade)
 

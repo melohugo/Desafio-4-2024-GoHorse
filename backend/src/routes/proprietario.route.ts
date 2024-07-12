@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { list, createTodo, findTodoById, updateTodo, deleteTodo, findAllProprietario } from "../business/todo.business";
+import { findAllProprietario } from "../business/proprietario.business";
 import createHttpError from "http-errors";
-import { TodoCreateSchema, TodoIdSchema } from "../schemas/todo.schema";
+import { TodoCreateSchema, TodoIdSchema } from "../schemas/proprietario.schema";
 
 const router = Router();
 
@@ -18,6 +18,7 @@ router.get("/proprietarios", async (req, res) => {
 });
 
 
+/*
 router.get("/", async (req, res) => {
   // Validate input
   const { userId } = req;
@@ -105,5 +106,6 @@ router.delete("/:id", async (req, res) => {
   // Send response
   return res.status(204).json();
 });
+*/
 
 export default router;
