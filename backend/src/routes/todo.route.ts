@@ -1,9 +1,22 @@
 import { Router } from "express";
-import { list, createTodo, findTodoById, updateTodo, deleteTodo } from "../business/todo.business";
+import { list, createTodo, findTodoById, updateTodo, deleteTodo, findAllProprietario } from "../business/todo.business";
 import createHttpError from "http-errors";
 import { TodoCreateSchema, TodoIdSchema } from "../schemas/todo.schema";
 
 const router = Router();
+
+
+router.get("/proprietarios", async (req, res) => {
+    // Validate
+    // Execute
+    const dados = await findAllProprietario();
+
+    // Send 
+
+    return res.status(200).json(dados);
+
+});
+
 
 router.get("/", async (req, res) => {
   // Validate input
