@@ -12,6 +12,7 @@ import { handleCommonError } from "./middlewares/handleCommonError.middleware";
 
 import proprietarioRoute from "./routes/proprietario.route";
 import veiculoRoute from "./routes/veiculo.route";
+import multaRoute from "./routes/multa.route";
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use(helmet());
 // Include your routes here
 app.use("/proprietario", proprietarioRoute);
 app.use("/veiculo", veiculoRoute);
+app.use("/multa", multaRoute);
 
 app.use(handleZodError);
 app.use(handlePrismaError);
