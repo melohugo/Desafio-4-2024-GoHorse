@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomeProprietario from "./pages/HomePage/HomeProprietario";
 import HomeVeiculo from "./pages/VeiculosPage/HomeVeiculo";
 import VeiculoForm from "./pages/PagesForms/veiculos/VeiculoForm";
-import CriarProprietarioForm from "./pages/PagesForms/Proprietario/CriarProprietario/CriarProprietarioForm";
 import HomeMultas from "./pages/MultasPage/HomeMultas";
+import CriarProprietarioForm from "./pages/PagesForms/Proprietario/CriarProprietarioForm";
 
 function AppRoutes() {
     return (
@@ -15,6 +15,7 @@ function AppRoutes() {
                {/* Cada rota */}
                 <Route path="/" element={<HomeProprietario />}></Route>
                 <Route path="/CriarProprietarioForm" element={<CriarProprietarioForm />}></Route>
+                
                 
                 {/* Estas rotas são para testar as paginas de veiculos e Mutas */}
                 <Route path="/HomeVeiculo" element={<HomeVeiculo />}></Route>
