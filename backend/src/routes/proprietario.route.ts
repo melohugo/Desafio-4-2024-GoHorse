@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createProprietario, findAllProprietario } from "../business/proprietario.business";
+import { createProprietario, findAllProprietario, findAllPontoProprietario } from "../business/proprietario.business";
 import createHttpError from "http-errors";
 import { InfoProprietarioSchema, TodoCreateSchema, TodoIdSchema } from "../schemas/proprietario.schema";
 
@@ -10,6 +10,18 @@ router.get("/proprietarios", async (req, res) => {
     // Validate
     // Execute
     const dados = await findAllProprietario();
+
+    // Send 
+
+    return res.status(200).json(dados);
+
+});
+
+router.get("/pontos/", async (req, res) => {
+    // Validate
+
+    // Execute
+    const dados = await findAllPontoProprietario();
 
     // Send 
 

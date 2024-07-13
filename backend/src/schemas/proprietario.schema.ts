@@ -9,6 +9,12 @@ export const InfoProprietarioSchema = z.object({
     vencimentoCnh: z.coerce.date(),
 });
 
+export const NomePontosSchema = z.object({
+    nome: z.string(),
+    pontos: z.number(),
+});
+
+
 export const TodoItemSchema = z.object({
   id: z.number().int().positive(),
   title: z.string().max(50),
@@ -24,6 +30,7 @@ export const TodoIdSchema = z.coerce.number().int().positive();
 
 // Types
 export type InfoProprietario = z.infer<typeof InfoProprietarioSchema>;
+export type NomePontos = z.infer<typeof NomePontosSchema>;
 export type TodoItem = z.infer<typeof TodoItemSchema>;
 export type TodoCreate = z.infer<typeof TodoCreateSchema>;
 export type TodoId = z.infer<typeof TodoIdSchema>;
