@@ -16,10 +16,10 @@ function AppRoutes() {
                 <Route path="/" element={<HomeProprietario />}></Route>
                 <Route path="/CriarProprietarioForm" element={<CriarProprietarioForm />}></Route>
                 
-                
                 {/* Estas rotas são para testar as paginas de veiculos e Mutas */}
                 <Route path="/HomeVeiculo" element={<HomeVeiculo />}></Route>
                 <Route path="/VeiculoForm" element={<VeiculoForm />}></Route>
+
                 <Route path="/HomeMultas" element={<HomeMultas />}></Route>
 
             </Routes>
