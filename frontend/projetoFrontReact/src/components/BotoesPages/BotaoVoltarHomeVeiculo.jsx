@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
-import { Link } from 'react-router-dom';
 
 function BotaoVoltarHomeVeiculo() {
+
+  const navigate = useNavigate();
+  const handleConfirmExit = () => {
+    navigate('/HomeVeiculo'); 
+  };
+
   return (
-    <header>
-      <nav>
-        <Link className={styles.buttonVoltar} to={'/HomeVeiculo'}>Voltar</Link>
-      </nav>
-    </header >
+    <>
+      <button className={styles.buttonVoltar} onClick={handleConfirmExit}>Voltar</button>
+    </>
   );
 }
 

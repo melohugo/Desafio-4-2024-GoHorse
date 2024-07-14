@@ -18,8 +18,6 @@ function AppRoutes() {
                 <Route path="/veiculos/:proprietarioId" element={<HomeVeiculo />} />
                 <Route path="/multas/:veiculoId" element={<HomeMultas/>} />
                 <Route path="/veiculos/:id" component={HomeVeiculo} />
-
-               
                 <Route path="/HomeVeiculo" element={<HomeVeiculo />} />
                 <Route path="/VeiculoForm" element={<VeiculoForm />} />
             </Routes>
