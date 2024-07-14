@@ -1,14 +1,14 @@
 import { Router } from "express";
 import { createMulta } from "../business/multa.business";
 import createHttpError from "http-errors";
-import {  placaSchema, infoMultaSchema } from "../schemas/multa.schema";
+import {  placaSchema, infoMultaSchema, infoMultaPontoSchema } from "../schemas/multa.schema";
 
 const router = Router();
 
 router.post("/:placa", async (req, res) => {
     // Validate
     const placa = placaSchema.parse(req.params.placa);
-    const info = infoMultaSchema.parse(req.body);
+    const info = infoMultaPontoSchema.parse(req.body);
 
     // Execute
     const dado = createMulta(info, placa);
