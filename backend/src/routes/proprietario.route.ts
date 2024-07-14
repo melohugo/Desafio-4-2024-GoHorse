@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { createProprietario, findAllProprietario } from "../business/proprietario.business";
+import { createProprietario, findAllProprietario, findAllPontoProprietario, findAllMultasProprietario, editProprietario } from "../business/proprietario.business";
+import { CpfDonoSchema } from "../schemas/veiculo.schema";
 import createHttpError from "http-errors";
 import { InfoProprietarioSchema, TodoCreateSchema, TodoIdSchema } from "../schemas/proprietario.schema";
 
@@ -17,12 +18,50 @@ router.get("/proprietarios", async (req, res) => {
 
 });
 
+router.get("/pontos/", async (req, res) => {
+    // Validate
+
+    // Execute
+    const dados = await findAllPontoProprietario();
+
+    // Send 
+
+    return res.status(200).json(dados);
+
+});
+
 router.post("/criar", async (req, res) => {
     // Validate
     const info = InfoProprietarioSchema.parse(req.body);
 
     // Execute
     const dados = await createProprietario(info);
+
+    // Send 
+
+    return res.status(200).json(dados);
+
+});
+
+router.get("/multas/:cpf", async (req, res) => {
+    // Validate
+    const cpf = CpfDonoSchema.parse(req.params.cpf);
+
+    // Execute
+    const dados = await findAllMultasProprietario(cpf);
+
+    // Send
+
+    return res.status(200).json(dados);
+});
+
+router.put("/editar/:cpf", async (req, res) => {
+    // Validate
+    const cpf = CpfDonoSchema.parse(req.params.cpf);
+    const info = InfoProprietarioSchema.parse(req.body);
+
+    // Execute
+    const dados = await editProprietario(info, cpf);
 
     // Send 
 

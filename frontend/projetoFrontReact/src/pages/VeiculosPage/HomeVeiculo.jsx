@@ -1,49 +1,82 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import styles from './styles.module.css';
 import BotaoVoltarHomeProprietario from '../../components/BotoesPages/BotaoVoltarHomeProprietario';
 import BotaoCriarVeiculo from '../../components/BotoesPages/BotaoCriarVeiculo';
 
 function HomeVeiculo() {
+  const { id } = useParams();
+  const [proprietario, setProprietario] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProprietario = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/proprietarios/${1}`); 
+        if (!response.ok) {
+          throw new Error('Erro ao buscar proprietário');
+        }
+        const data = await response.json();
+        setProprietario(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProprietario();
+  }, [id]);
+
+  if (loading) {
+    return <p>Carregando...</p>;
+  }
+
+  if (error) {
+    return <p>Erro: {error}</p>;
+  }
+
   return (
     <>
-    <BotaoCriarVeiculo/>
-    <BotaoVoltarHomeProprietario/>
+      <BotaoCriarVeiculo />
+      <BotaoVoltarHomeProprietario />
 
       <div>
-      <h2 className={styles.h2}>Veículos do []</h2>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Placa</th>
-              <th>Marca</th>
-              <th>Modelo</th>
-              <th>Ano</th>
-              <th>Cor</th>
-              <th>Multas</th>
-              <th>Editar Motorista</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>dona aristeia</td>
-              <td>Fiat</td>
-              <td>Palio</td>
-              <td>2010</td>
-              <td>Branco</td>
-              <td>📘</td>
-              <td>✏️</td>
-            </tr>
-            <tr>
-              <td>sr aristeu</td>
-              <td>Fiat</td>
-              <td>Palio</td>
-              <td>32010</td>
-              <td>Branco</td>
-              <td>📘</td>
-              <td>✏️</td>
-            </tr>
-          </tbody>
-        </table>
+        {proprietario && (
+          <>
+            <h2 className={styles.h2}>Veículos do {proprietario.nome}</h2>
+
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>Placa</th>
+                  <th>Marca</th>
+                  <th>Modelo</th>
+                  <th>Ano</th>
+                  <th>Cor</th>
+                  <th>Multas</th>
+                  <th>Editar Motorista</th>
+                </tr>
+              </thead>
+              <tbody>
+                {proprietario.veiculos.map((veiculo) => (
+                  <tr key={veiculo.id}>
+                    <td>{veiculo.placa}</td>
+                    <td>{veiculo.marca}</td>
+                    <td>{veiculo.modelo}</td>
+                    <td>{veiculo.ano}</td>
+                    <td>{veiculo.cor}</td>
+                    <td><Link to={`/multas/${veiculo.id}`}>📘</Link></td> 
+                    <td>
+                      <button>✏️</button> 
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
       </div>
     </>
   );
