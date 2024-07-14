@@ -1,0 +1,36 @@
+{
+  "proprietarios": [
+    {
+      "nome": "aristeu motorista",
+      "cpf": "99999999999",
+      "categoriaCnh": "B",
+      "vencimentoCnh": "30/12/2028",
+      "veiculos": "🚗",
+      "multas": "📘"
+    },
+    {
+      "nome": "aristeu motociclista",
+      "cpf": "99999999999",
+      "categoriaCnh": "A",
+      "vencimentoCnh": "30/12/2028",
+      "veiculos": "🚗",
+      "multas": "📘"
+    },
+    {
+      "nome": "dona aristeia",
+      "cpf": "99999999999",
+      "categoriaCnh": "B",
+      "vencimentoCnh": "30/12/2028",
+      "veiculos": "🚗",
+      "multas": "📘"
+    },
+    {
+      "nome": "sr aristeu",
+      "cpf": "99999999999",
+      "categoriaCnh": "B",
+      "vencimentoCnh": "30/12/2028",
+      "veiculos": "🚗",
+      "multas": "📘"
+    }
+  ]
+}

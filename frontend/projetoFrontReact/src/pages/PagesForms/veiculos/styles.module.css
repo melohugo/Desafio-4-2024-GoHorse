@@ -21,7 +21,7 @@ p {
 }
 
 .modal {
-    height: 600px;
+    height: 620px;
     width: 500px;
     background-color: white;
     padding: 20px;
@@ -50,4 +50,22 @@ label input {
     border: 1px solid black;
     color: black;
     width: 190px;
+}
+
+.buttonSalvar {
+    background-color:transparent;
+    border: 0px ;
+    padding: 30px 80px;
+    margin: 4px 2px;
+    text-decoration: none;
+}
+
+.buttonConfirm {
+    border-radius: 45px;
+    background-color: transparent;
+    border: 0px ;
+    padding: 30px 80px;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
 }

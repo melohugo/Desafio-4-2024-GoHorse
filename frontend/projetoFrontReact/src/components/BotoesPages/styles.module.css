@@ -7,13 +7,10 @@
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    font-size: 15px;
-    display: grid;
-    place-content: center; 
-    position: fixed; 
-    top: 80px; 
-    right: 70px; 
+    margin-top: 60px; 
+    margin-left: 900px; 
     text-decoration: none;
+    position:absolute;
 }
 
 .buttonVoltar {
@@ -25,11 +22,10 @@
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    font-size: 15px;
     display: grid;
     place-content: center; 
     position: fixed; 
-    top: 80px; 
-    right: 280px; 
+    top: 140px; 
+    right: 380px; 
     text-decoration: none;
 }

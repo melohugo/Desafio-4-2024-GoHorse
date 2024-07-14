@@ -30,8 +30,8 @@ function HomeVeiculo() {
               <td>Palio</td>
               <td>2010</td>
               <td>Branco</td>
-              <td>📘</td>
-              <td>✏️</td>
+              <td><button>📘</button></td>
+              <td><button>✏️</button></td>
             </tr>
             <tr>
               <td>sr aristeu</td>
@@ -39,8 +39,8 @@ function HomeVeiculo() {
               <td>Palio</td>
               <td>32010</td>
               <td>Branco</td>
-              <td>📘</td>
-              <td>✏️</td>
+              <td><button>📘</button></td>
+              <td><button>✏️</button></td>
             </tr>
           </tbody>
         </table>
