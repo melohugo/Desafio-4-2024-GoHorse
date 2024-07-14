@@ -69,22 +69,24 @@ export async function createProprietario(info: InfoProprietario): Promise<InfoPr
   return todo;
 }
 
-export async function findAllMultasProprietario(): Promise<infoMulta[]> {
-  const multas = await prisma.proprietario.findMany({
-    include: {
-      Veiculos: {
-        include: {
-          Multas: true,
+export async function findAllMultasProprietario(cpf: CpfDono): Promise<any[]> {
+  const multas = await prisma.veiculo.findMany({
+      where: {
+        cpf: cpf,
+      },
+      select: {
+        Multas: {
+            select: {
+                valor: true,
+                data: true,
+                tipoInfracao: true,
+                placa: true,
+            },
         },
       },
-    },
   });
-  const todasAsMultas = multas.map(propr => {
-    propr.Veiculos.forEach(veiculo => {
-      veiculo.Multas
-    });
-  });
-  return todasAsMultas;
+
+  return multas;
 }
 
 export async function editProprietario(info: InfoProprietario, cpf: CpfDono): Promise<InfoProprietario | null> {

@@ -43,15 +43,16 @@ router.post("/criar", async (req, res) => {
 
 });
 
-router.get("/multas", async (req, res) => {
-  // Validate
+router.get("/multas/:cpf", async (req, res) => {
+    // Validate
+    const cpf = CpfDonoSchema.parse(req.params.cpf);
 
-  // Execute
-  const dados = await findAllMultasProprietario();
+    // Execute
+    const dados = await findAllMultasProprietario(cpf);
 
-  // Send
+    // Send
 
-  return res.status(200).json(dados);
+    return res.status(200).json(dados);
 });
 
 router.put("/editar/:cpf", async (req, res) => {
