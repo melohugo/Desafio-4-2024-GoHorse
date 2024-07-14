@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 
 function BotaoCriar() {
   return (
-    <p className={styles.buttonSalvar}  type="submit" >Criar</p>
+    <p className={styles.buttonCriar}  type="submit" >Criar</p>
   );
 }
 

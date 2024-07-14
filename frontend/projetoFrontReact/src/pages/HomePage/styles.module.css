@@ -40,3 +40,9 @@
     text-align: left;
     text-align: center;
 }
+
+.buttonSalvar {
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+}
