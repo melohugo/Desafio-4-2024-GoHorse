@@ -1,13 +1,61 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
 import BotaoCriarProprietario from '../../components/BotoesPages/BotaoCriarProprietario';
 
 function HomeProprietario() {
+  const [proprietarios, setProprietarios] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProprietarios = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/proprietarios');
+        if (!response.ok) {
+          throw new Error('Erro ao buscar dados');
+        }
+        const data = await response.json();
+        setProprietarios(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProprietarios();
+  }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3000/proprietarios/${id}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        throw new Error('Erro ao deletar o proprietário');
+      }
+      // Atualiza o estado após a deleção
+      setProprietarios(prevProprietarios =>
+        prevProprietarios.filter(proprietario => proprietario.id !== id)
+      );
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+  
+
+  if (loading) {
+    return <p>Carregando...</p>;
+  }
+
+  if (error) {
+    return <p>Erro: {error}</p>;
+  }
+
   return (
     <>
-    <BotaoCriarProprietario/>
-
-      <h1 className={styles.h1}>Bem vindo ao detran</h1>
+      <div><BotaoCriarProprietario /></div>
+      <h1 className={styles.h1}>Bem vindo ao Detran</h1>
       <h2 className={styles.h2}>Proprietários</h2>
       <div>
         <table className={styles.table}>
@@ -15,55 +63,34 @@ function HomeProprietario() {
             <tr>
               <th>Nome</th>
               <th>Cpf</th>
-              <th>Categoria CNH</th>
-              <th>Vencimento CNH</th>
+              <th>Categoria Cnh</th>
+              <th>vencimento Cnh</th>
               <th>Veículos</th>
               <th>Multas</th>
               <th>Editar Motorista</th>
+              <th>Deletar</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>aristeu motorista</td>
-              <td>99999999999</td>
-              <td>B</td>
-              <td>30/12/2028</td>
-              <td>🚗</td>
-              <td>📘</td>
-              <td>✏️</td>
-            </tr>
-            <tr>
-              <td>aristeu motociclista</td>
-              <td>99999999999</td>
-              <td>A</td>
-              <td>30/12/2028</td>
-              <td>🚗</td>
-              <td>📘</td>
-              <td>✏️</td>
-            </tr>
-            <tr>
-              <td>dona aristeia</td>
-              <td>99999999999</td>
-              <td>B</td>
-              <td>30/12/2028</td>
-              <td>🚗</td>
-              <td>📘</td>
-              <td>✏️</td>
-            </tr>
-            <tr>
-              <td>sr aristeu</td>
-              <td>99999999999</td>
-              <td>B</td>
-              <td>30/12/2028</td>
-              <td>🚗</td>
-              <td>📘</td>
-              <td>✏️</td>
-            </tr>
+            {proprietarios.map((proprietario) => (
+              <tr key={proprietario.id}>
+                <td>{proprietario.nome}</td>
+                <td>{proprietario.cpf}</td>
+                <td>{proprietario.categoriaCnh}</td>
+                <td>{proprietario.vencimentoCnh}</td>
+                
+                <td><button>🚗</button></td>
+                <td><button>📘</button></td>
+                <td><button>✏️</button></td>
+                <td>
+                  <button onClick={() => handleDelete(proprietario.id)}>🗑️</button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
     </>
   );
 }
-
 export default HomeProprietario;
