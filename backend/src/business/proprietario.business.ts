@@ -1,6 +1,7 @@
 import { type InfoProprietario, type NomePontos} from "../schemas/proprietario.schema";
 import { prisma } from "../prisma";
 import createHttpError from "http-errors";
+import { infoMulta } from "../schemas/multa.schema";
 
 
 export async function findAllProprietario(): Promise<InfoProprietario[]> {
@@ -67,6 +68,23 @@ export async function createProprietario(info: InfoProprietario): Promise<InfoPr
   return todo;
 }
 
+export async function findAllMultasProprietario(): Promise<infoMulta[]> {
+  const multas = await prisma.proprietario.findMany({
+    include: {
+      Veiculos: {
+        include: {
+          Multas: true,
+        },
+      },
+    },
+  });
+  const todasAsMultas = multas.map(propr => {
+    propr.Veiculos.forEach(veiculo => {
+      veiculo.Multas
+    });
+  });
+  return todasAsMultas;
+}
 
 /*
 export async function list(userId: number): Promise<TodoItem[]> {

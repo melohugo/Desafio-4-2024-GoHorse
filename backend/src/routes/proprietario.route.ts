@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createProprietario, findAllProprietario, findAllPontoProprietario } from "../business/proprietario.business";
+import { createProprietario, findAllProprietario, findAllPontoProprietario, findAllMultasProprietario } from "../business/proprietario.business";
 import createHttpError from "http-errors";
 import { InfoProprietarioSchema, TodoCreateSchema, TodoIdSchema } from "../schemas/proprietario.schema";
 
@@ -42,6 +42,16 @@ router.post("/criar", async (req, res) => {
 
 });
 
+router.get("/multas", async (req, res) => {
+  // Validate
+
+  // Execute
+  const dados = await findAllMultasProprietario();
+
+  // Send
+
+  return res.status(200).json(dados);
+});
 
 /*
 router.get("/", async (req, res) => {
