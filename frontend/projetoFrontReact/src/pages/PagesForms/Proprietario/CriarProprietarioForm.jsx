@@ -1,28 +1,19 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
 import BotaoCriarProprietario from '../../../components/BotaoSair/BotaoSairProprietario';
 import BotaoCriar from '../../../components/BotoesForms/BotaoCriar';
 
 function CriarProprietarioForm() {
-    const [showModal, setShowModal] = useState(false);
     const [nome, setNome] = useState('');
     const [cpf, setCpf] = useState('');
     const [categoriaCnh, setCategoriaCnh] = useState('');
     const [vencimentoCnh, setVencimentoCnh] = useState('');
-    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
-    const handleOpenModal = () => {
-        setShowModal(true);
-    };
-
-    const handleCloseModal = () => {
-        setShowModal(false);
-    };
+    const navigate = useNavigate();
 
     const handleSignupForm = async (event) => {
         event.preventDefault();
-        setLoading(true);
         setError(null);
 
         try {
@@ -52,16 +43,14 @@ function CriarProprietarioForm() {
             setCategoriaCnh('');
             setVencimentoCnh('');
 
-            // Fechar modal ou realizar outras ações necessárias
-            handleCloseModal();
-
             // Exibir mensagem de sucesso para o usuário
             alert('Dados salvos com sucesso!');
+
+            // Redirecionar para a tela inicial
+            navigate('/');
         } catch (error) {
             console.error('Erro ao enviar dados para a API:', error);
             setError('Erro ao salvar os dados. Tente novamente mais tarde.');
-        } finally {
-            setLoading(false);
         }
     };
 
@@ -120,10 +109,10 @@ function CriarProprietarioForm() {
                             </label>
                             <br />
 
-                            <button className={styles.buttonConfirm} type="submit" >
+                            <button className={styles.buttonConfirm} type="submit">
                                 <BotaoCriar />
                             </button>
-                            <BotaoCriarProprietario onClose={handleCloseModal} />
+                            <BotaoCriarProprietario />
                         </form>
 
                         {error && <p className={styles.error}>{error}</p>}

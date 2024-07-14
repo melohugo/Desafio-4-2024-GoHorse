@@ -5,6 +5,7 @@ import BotaoCriarVeiculo from '../../../components/BotoesPages/BotaoCriarVeiculo
 import BotaoCriar from '../../../components/BotoesForms/BotaoCriar';
 
 function VeiculoForm() {
+    
     const [Placa, setPlaca] = useState('');
     const [Marca, setMarca] = useState('');
     const [Modelo, setModelo] = useState('');
@@ -25,7 +26,7 @@ function VeiculoForm() {
         event.preventDefault();
         setLoading(true);
         setError(null);
-        console.log({ nome, cpf, categoriaCnh, vencimentoCnh });
+        console.log({ Placa, Marca, Modelo, Ano, Cor });
 
         try {
             const response = await fetch('http://localhost:3000/proprietarios', {
@@ -34,10 +35,11 @@ function VeiculoForm() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    nome,
-                    cpf,
-                    categoriaCnh,
-                    vencimentoCnh,
+                    Placa,
+                    Marca,
+                    Modelo,
+                    Ano,
+                    Cor
                 }),
             });
 
@@ -49,10 +51,11 @@ function VeiculoForm() {
             console.log('Dados salvos:', data);
 
             // Limpar formulário após o envio bem-sucedido
-            setNome('');
-            setCpf('');
-            setCategoriaCnh('');
-            setVencimentoCnh('');
+            setPlaca('');
+            setMarca('');
+            setModelo('');
+            setAno('');
+            setCor('');
 
             // Fechar modal ou realizar outras ações necessárias
             handleCloseModal();
@@ -72,7 +75,7 @@ function VeiculoForm() {
             <div className={styles.overlay}>
                 <div className={styles.modal}>
                     <div className={styles.modalContent}>
-                        <h1>Veículo do []</h1>
+                        <h1>Veículo do  []</h1>
                         <form onSubmit={handleSignupForm}>
                             <label>
                                 <p>Placa:</p>
@@ -100,8 +103,8 @@ function VeiculoForm() {
                             </label>
                             <button className={styles.buttonConfirm} type="submit">
                                 <BotaoCriar />
-                                <BotaoCriarVeiculo onClose={handleCloseModal} />
                             </button>
+                                <BotaoCriarVeiculo onClose={handleCloseModal} />
                             <BotaoSairVeiculo/>
                         </form>
                     </div>
