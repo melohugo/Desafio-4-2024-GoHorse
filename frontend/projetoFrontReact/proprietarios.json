@@ -46,46 +46,11 @@
       ]
     },
     {
-      "id": "2",
       "nome": "Dona Aristeia",
       "cpf": "88888888888",
       "categoriaCnh": "B",
-      "vencimentoCnh": "31/12/2029",
-      "veiculos": [
-        {
-          "id": "2",
-          "placa": "ABC1234",
-          "marca": "Fiat",
-          "modelo": "Palio",
-          "ano": "2010",
-          "cor": "Branco",
-          "multas": [
-            {
-              "id": "1",
-              "Tipo": "Lugar errado",
-              "valor": "R$ 100,00",
-              "Data": "03022026",
-              "Pontos": "1",
-              "PlacaCarro": "33444"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "nome": "Angelica da Costa campos",
-      "cpf": "076.809.551-40",
-      "categoriaCnh": "a",
-      "vencimentoCnh": "31/12/2029",
-      "id": "3"
-    },
-    {
-      "id": "8e03",
-      "Placa": "wa",
-      "Marca": "d",
-      "Modelo": "d",
-      "Ano": "d",
-      "Cor": "d"
+      "vencimentoCnh": "31/12/2027",
+      "id": "2"
     }
   ]
 }

@@ -5,6 +5,7 @@ import HomeVeiculo from "./pages/VeiculosPage/HomeVeiculo";
 import HomeMultas from "./pages/MultasPage/HomeMultas";
 import CriarProprietarioForm from "./pages/PagesForms/Proprietario/CriarProprietarioForm";
 import VeiculoForm from "./pages/PagesForms/veiculos/VeiculoForm";
+import BotaoVoltarHomeVeiculo from "./components/BotoesPages/BotaoVoltarHomeVeiculo";
 
 function AppRoutes() {
     return (
@@ -15,9 +16,8 @@ function AppRoutes() {
                {/* Cada rota */}
                 <Route path="/" element={<HomeProprietario />} />
                 <Route path="/CriarProprietarioForm" element={<CriarProprietarioForm />} />
-                <Route path="/veiculos/:proprietarioId" element={<HomeVeiculo />} />
-                <Route path="/multas/:veiculoId" element={<HomeMultas/>} />
-                <Route path="/veiculos/:id" component={HomeVeiculo} />
+                <Route path="/multas/:cpf" element={<HomeMultas/>} />
+                <Route path="/veiculos/:cpf" element={<BotaoVoltarHomeVeiculo />} />
                 <Route path="/HomeVeiculo" element={<HomeVeiculo />} />
                 <Route path="/VeiculoForm" element={<VeiculoForm />} />
             </Routes>
