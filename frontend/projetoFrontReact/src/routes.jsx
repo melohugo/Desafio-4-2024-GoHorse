@@ -16,11 +16,8 @@ function AppRoutes() {
                {/* Cada rota */}
                 <Route path="/" element={<HomeProprietario />} />
                 <Route path="/CriarProprietarioForm" element={<CriarProprietarioForm />} />
-
-                {/*<Route path="/veiculos/:proprietarioId" element={<HomeVeiculo />} />*/}
                 <Route path="/multas/:cpf" element={<HomeMultas/>} />
                 <Route path="/veiculos/:cpf" element={<BotaoVoltarHomeVeiculo />} />
-               
                 <Route path="/HomeVeiculo" element={<HomeVeiculo />} />
                 <Route path="/VeiculoForm" element={<VeiculoForm />} />
             </Routes>
