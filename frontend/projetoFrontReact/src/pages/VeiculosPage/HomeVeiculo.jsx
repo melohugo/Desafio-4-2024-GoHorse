@@ -5,7 +5,7 @@ import BotaoVoltarHomeProprietario from '../../components/BotoesPages/BotaoVolta
 import BotaoCriarVeiculo from '../../components/BotoesPages/BotaoCriarVeiculo';
 
 function HomeVeiculo() {
-  const { id } = useParams();
+  const { cpf } = useParams();
   const [proprietario, setProprietario] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,7 +13,7 @@ function HomeVeiculo() {
   useEffect(() => {
     const fetchProprietario = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/proprietarios/${1}`); 
+        const response = await fetch(`http://localhost:3000/veiculo/${cpf}`); 
         if (!response.ok) {
           throw new Error('Erro ao buscar proprietário');
         }
@@ -27,7 +27,7 @@ function HomeVeiculo() {
     };
 
     fetchProprietario();
-  }, [id]);
+  }, [cpf]);
 
   if (loading) {
     return <p>Carregando...</p>;
@@ -61,13 +61,13 @@ function HomeVeiculo() {
               </thead>
               <tbody>
                 {proprietario.veiculos.map((veiculo) => (
-                  <tr key={veiculo.id}>
+                  <tr key={veiculo.cpf}>
                     <td>{veiculo.placa}</td>
                     <td>{veiculo.marca}</td>
                     <td>{veiculo.modelo}</td>
                     <td>{veiculo.ano}</td>
                     <td>{veiculo.cor}</td>
-                    <td><Link to={`/multas/${veiculo.id}`}>📘</Link></td> 
+                    <td><Link to={`/multas/${veiculo.cpf}`}>📘</Link></td> 
                     <td>
                       <button>✏️</button> 
                     </td>

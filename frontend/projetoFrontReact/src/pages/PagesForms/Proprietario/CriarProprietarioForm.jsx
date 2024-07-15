@@ -9,6 +9,7 @@ function CriarProprietarioForm() {
     const [cpf, setCpf] = useState('');
     const [categoriaCnh, setCategoriaCnh] = useState('');
     const [vencimentoCnh, setVencimentoCnh] = useState('');
+    
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
@@ -17,7 +18,7 @@ function CriarProprietarioForm() {
         setError(null);
 
         try {
-            const response = await fetch('http://localhost:3000/proprietarios', {
+            const response = await fetch('http://localhost:3000/proprietario/criar', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

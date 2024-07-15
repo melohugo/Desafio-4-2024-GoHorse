@@ -8,7 +8,7 @@ function HomeProprietario() {
   const [proprietarios, setProprietarios] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [editingId, setEditingId] = useState(null); 
+  const [editingCpf, setEditingCpf] = useState(null); 
   const [editFormData, setEditFormData] = useState({
     nome: '',
     cpf: '',
@@ -19,7 +19,7 @@ function HomeProprietario() {
   useEffect(() => {
     const fetchProprietarios = async () => {
       try {
-        const response = await fetch('http://localhost:3000/proprietarios');
+        const response = await fetch('http://localhost:3000/proprietario/proprietarios');
         if (!response.ok) {
           throw new Error('Erro ao buscar dados');
         }
@@ -35,16 +35,16 @@ function HomeProprietario() {
     fetchProprietarios();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (cpf) => {
     try {
-      const response = await fetch(`http://localhost:3000/proprietarios/${id}`, {
+      const response = await fetch(`http://localhost:3000/proprietario/deletar/${cpf}`, {
         method: 'DELETE',
       });
       if (!response.ok) {
         throw new Error('Erro ao deletar o proprietário');
       }
       setProprietarios(prevProprietarios =>
-        prevProprietarios.filter(proprietario => proprietario.id !== id)
+        prevProprietarios.filter(proprietario => proprietario.cpf !== cpf)
       );
     } catch (error) {
       setError(error.message);
@@ -52,7 +52,7 @@ function HomeProprietario() {
   };
 
   const handleEdit = (proprietario) => {
-    setEditingId(proprietario.id);
+    setEditingcpf(proprietario.cpf);
     setEditFormData({
       nome: proprietario.nome,
       cpf: proprietario.cpf,
@@ -61,10 +61,9 @@ function HomeProprietario() {
     });
   };
 
-
-  const handleSaveEdit = async (id) => {
+  const handleSaveEdit = async (cpf) => {
     try {
-      const response = await fetch(`http://localhost:3000/proprietarios/${id}`, {
+      const response = await fetch(`http://localhost:3000/proprietario/editar/${cpf}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -75,9 +74,9 @@ function HomeProprietario() {
         throw new Error('Erro ao atualizar o proprietário');
       }
       setProprietarios(proprietarios.map(proprietario =>
-        proprietario.id === id ? { ...proprietario, ...editFormData } : proprietario
+        proprietario.cpf === cpf ? { ...proprietario, ...editFormData } : proprietario
       ));
-      setEditingId(null);
+      setEditingcpf(null);
       setEditFormData({
         nome: '',
         cpf: '',
@@ -118,8 +117,8 @@ function HomeProprietario() {
           </thead>
           <tbody>
             {proprietarios.map((proprietario) => (
-              <tr key={proprietario.id}>
-                <td>{editingId === proprietario.id ? (
+              <tr key={proprietario.cpf}>
+                <td>{editingcpf === proprietario.cpf ? (
                   <input
                     type="text"
                     value={editFormData.nome}
@@ -128,7 +127,7 @@ function HomeProprietario() {
                 ) : (
                   proprietario.nome
                 )}</td>
-                <td>{editingId === proprietario.id ? (
+                <td>{editingcpf === proprietario.cpf ? (
                   <input
                     type="text"
                     value={editFormData.cpf}
@@ -137,7 +136,7 @@ function HomeProprietario() {
                 ) : (
                   proprietario.cpf
                 )}</td>
-                <td>{editingId === proprietario.id ? (
+                <td>{editingcpf === proprietario.cpf ? (
                   <input
                     type="text"
                     value={editFormData.categoriaCnh}
@@ -146,7 +145,7 @@ function HomeProprietario() {
                 ) : (
                   proprietario.categoriaCnh
                 )}</td>
-                <td>{editingId === proprietario.id ? (
+                <td>{editingcpf === proprietario.cpf ? (
                   <input
                     type="text"
                     value={editFormData.vencimentoCnh}
@@ -155,18 +154,18 @@ function HomeProprietario() {
                 ) : (
                   proprietario.vencimentoCnh
                 )}</td>
-                <td><button><Link to={`/veiculos/${proprietario.id}`}>🚗</Link></button></td> 
-                <td><button><Link to={`/multas/${proprietario.id}`}>📘</Link></button></td>
+                <td><button><Link to={`/veiculos/${proprietario.cpf}`}>🚗</Link></button></td> 
+                <td><button><Link to={`/multas/${proprietario.cpf}`}>📘</Link></button></td>
 
                 {/* Editar */}
-                <td>{editingId === proprietario.id ? (
-                  <button className={styles.buttonSalvar} onClick={() => handleSaveEdit(proprietario.id)}><BotaoSalvar /></button>
+                <td>{editingcpf === proprietario.cpf ? (
+                  <button className={styles.buttonSalvar} onClick={() => handleSaveEdit(proprietario.cpf)}><BotaoSalvar /></button>
                 ) : (
                   <button onClick={() => handleEdit(proprietario)}>✏️</button>
                 )}</td>
 
                 <td>
-                  <button onClick={() => handleDelete(proprietario.id)}>🗑️</button>
+                  <button onClick={() => handleDelete(proprietario.cpf)}>🗑️</button>
                 </td>
               </tr>
             ))}

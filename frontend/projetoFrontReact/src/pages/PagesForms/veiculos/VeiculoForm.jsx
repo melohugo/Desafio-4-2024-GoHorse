@@ -29,7 +29,7 @@ function VeiculoForm() {
         console.log({ Placa, Marca, Modelo, Ano, Cor });
 
         try {
-            const response = await fetch('http://localhost:3000/proprietarios', {
+            const response = await fetch(`http://localhost:3000/veiculo/${cpf}/cadastrar`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

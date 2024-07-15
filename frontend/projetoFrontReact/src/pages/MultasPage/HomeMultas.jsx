@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 import BotaoVoltarHomeProprietario from '../../components/BotoesPages/BotaoVoltarHomeProprietario';
 
 function HomeMultas() {
-  const { id } = useParams();
+  const { cpf } = useParams();
   const [proprietario, setProprietario] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,7 +12,7 @@ function HomeMultas() {
   useEffect(() => {
     const fetchProprietario = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/proprietarios/${1}`);
+        const response = await fetch(`http://localhost:3000/proprietario/multas/${cpf}`);
         if (!response.ok) {
           throw new Error('Erro ao buscar proprietário');
         }
@@ -28,7 +28,7 @@ function HomeMultas() {
     };
   
     fetchProprietario();
-  }, [id]);
+  }, [cpf]);
   
 
   if (loading) {
@@ -60,7 +60,7 @@ function HomeMultas() {
           <tbody>
             {proprietario.veiculos.map(veiculo => (
               veiculo.multas.map(multa => (
-                <tr key={multa.id}>
+                <tr key={multa.cpf}>
                   <td>{multa.valor}</td>
                   <td>{multa.Data}</td>
                   <td>{multa.Pontos}</td>
