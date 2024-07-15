@@ -93,7 +93,7 @@ Vocês irão escolher um membro do squad para realizar um fork deste repositóri
 
 ## Como usar
 
-- Dentro da pasta projetofrontreact no terminal instalar o npm com o comando `npm install dev` e rodar o comando `run npm dev` pra acessar o projeto front end
-- Dentro da pasta backend no terminal instalar o npm com o comando `npm install` e rodar o comando `run npm dev` pra acessar o projeto back end
+- Dentro da pasta projetofrontreact no terminal instalar o npm com o comando `npm install dev` e rodar o comando `npm run dev` pra acessar o projeto front end
+- Dentro da pasta backend no terminal instalar o npm com o comando `npm install` e rodar o comando `npm run dev` pra acessar o projeto back end
 - Para implementar as tabelas rodar o comando `npx prisma migrate dev`
 - A porta para acessar o back end é a 3003
