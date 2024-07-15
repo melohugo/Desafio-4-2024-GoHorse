@@ -3,14 +3,16 @@ import styles from './styles.module.css';
 import BotaoSairVeiculo from '../../../components/BotaoSair/BotaoSairVeiculo';
 import BotaoCriarVeiculo from '../../../components/BotoesPages/BotaoCriarVeiculo';
 import BotaoCriar from '../../../components/BotoesForms/BotaoCriar';
+import { useParams } from 'react-router-dom';
 
 function VeiculoForm() {
-    
-    const [Placa, setPlaca] = useState('');
-    const [Marca, setMarca] = useState('');
-    const [Modelo, setModelo] = useState('');
-    const [Ano, setAno] = useState('');
-    const [Cor, setCor] = useState('');
+
+    const { cpf } = useParams();
+    const [placa, setPlaca] = useState('');
+    const [marca, setMarca] = useState('');
+    const [modelo, setModelo] = useState('');
+    const [ano, setAno] = useState('');
+    const [cor, setCor] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -26,20 +28,21 @@ function VeiculoForm() {
         event.preventDefault();
         setLoading(true);
         setError(null);
-        console.log({ Placa, Marca, Modelo, Ano, Cor });
+        console.log({ placa, marca, modelo, ano, cor });
 
         try {
-            const response = await fetch(`http://localhost:3000/veiculo/${cpf}/cadastrar`, {
+            console.log(cpf);
+            const response = await fetch(`http://localhost:3003/veiculo/${cpf}/cadastrar`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    Placa,
-                    Marca,
-                    Modelo,
-                    Ano,
-                    Cor
+                    placa,
+                    marca,
+                    modelo,
+                    ano,
+                    cor
                 }),
             });
 
@@ -79,33 +82,33 @@ function VeiculoForm() {
                         <form onSubmit={handleSignupForm}>
                             <label>
                                 <p>Placa:</p>
-                                <input type="text" name="Placa" required value={Placa} onChange={(event) => setPlaca(event.target.value)} />
+                                <input type="text" name="Placa" required value={placa} onChange={(event) => setPlaca(event.target.value)} />
                             </label>
                             <br />
                             <label>
                                 <p>Marca:</p>
-                                <input type="text" name="Marca" required value={Marca} onChange={(event) => setMarca(event.target.value)} />
+                                <input type="text" name="Marca" required value={marca} onChange={(event) => setMarca(event.target.value)} />
                             </label>
                             <br />
                             <label>
                                 <p>Modelo:</p>
-                                <input type="text" name="Modelo" required value={Modelo} onChange={(event) => setModelo(event.target.value)} />
+                                <input type="text" name="Modelo" required value={modelo} onChange={(event) => setModelo(event.target.value)} />
                             </label>
                             <br />
                             <label>
                                 <p>Ano:</p>
-                                <input type="text" name="Ano" required value={Ano} onChange={(event) => setAno(event.target.value)} />
+                                <input type="text" name="Ano" required value={ano} onChange={(event) => setAno(event.target.value)} />
                             </label>
                             <br />
                             <label>
                                 <p>Cor:</p>
-                                <input type="text" name="Cor" required value={Cor} onChange={(event) => setCor(event.target.value)} />
+                                <input type="text" name="Cor" required value={cor} onChange={(event) => setCor(event.target.value)} />
                             </label>
                             <button className={styles.buttonConfirm} type="submit">
                                 <BotaoCriar />
                             </button>
-                                <BotaoCriarVeiculo onClose={handleCloseModal} />
-                            <BotaoSairVeiculo/>
+                            <BotaoCriarVeiculo onClose={handleCloseModal} />
+                            <BotaoSairVeiculo />
                         </form>
                     </div>
                 </div>

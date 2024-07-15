@@ -13,11 +13,11 @@ function AppRoutes() {
         <BrowserRouter>
             {/* Lista de rotas */}
             <Routes>
-               {/* Cada rota */}
+                {/* Cada rota */}
                 <Route path="/" element={<HomeProprietario />} />
                 <Route path="/CriarProprietarioForm" element={<CriarProprietarioForm />} />
-                <Route path="/multas/:cpf" element={<HomeMultas/>} />
-                <Route path="/veiculos/:cpf" element={<BotaoVoltarHomeVeiculo />} />
+                <Route path="/multas/:cpf" element={<HomeMultas />} />
+                <Route path="/veiculos/:proprietarioCpf" element={<HomeVeiculo />} />
                 <Route path="/HomeVeiculo" element={<HomeVeiculo />} />
                 <Route path="/VeiculoForm" element={<VeiculoForm />} />
             </Routes>

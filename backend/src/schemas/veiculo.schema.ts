@@ -10,7 +10,7 @@ export const InfoVeiculoSchema = z.object({
     cor: z.string().max(30),
 });
 
-export const CpfDonoSchema = z.string().length(11);
+export const CpfDonoSchema = z.string(); //.length(11);
 
 // Types
 export type InfoVeiculo = z.infer<typeof InfoVeiculoSchema>;

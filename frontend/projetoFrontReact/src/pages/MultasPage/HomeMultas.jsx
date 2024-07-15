@@ -12,24 +12,24 @@ function HomeMultas() {
   useEffect(() => {
     const fetchProprietario = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/proprietario/multas/${cpf}`);
+        const response = await fetch(`http://localhost:3003/proprietario/multas/${cpf}`);
         if (!response.ok) {
           throw new Error('Erro ao buscar proprietário');
         }
         const data = await response.json();
-        console.log('Dados do proprietário:', data); 
+        console.log('Dados do proprietário:', data);
         setProprietario(data);
       } catch (error) {
-        console.error(error); 
+        console.error(error);
         setError(error.message);
       } finally {
         setLoading(false);
       }
     };
-  
+
     fetchProprietario();
   }, [cpf]);
-  
+
 
   if (loading) {
     return <p>Carregando...</p>;
@@ -41,7 +41,7 @@ function HomeMultas() {
 
   return (
     <>
-      <BotaoVoltarHomeProprietario/>
+      <BotaoVoltarHomeProprietario />
 
       <div>
         <h2 className={styles.h2}>Multas do {proprietario.nome}</h2>
@@ -62,10 +62,10 @@ function HomeMultas() {
               veiculo.multas.map(multa => (
                 <tr key={multa.cpf}>
                   <td>{multa.valor}</td>
-                  <td>{multa.Data}</td>
-                  <td>{multa.Pontos}</td>
-                  <td>{multa.Tipo}</td>
-                  <td>{multa.PlacaCarro}</td>
+                  <td>{multa.data}</td>
+                  <td>{multa.dopntos}</td>
+                  <td>{multa.tipo}</td>
+                  <td>{multa.placa}</td>
                 </tr>
               ))
             ))}

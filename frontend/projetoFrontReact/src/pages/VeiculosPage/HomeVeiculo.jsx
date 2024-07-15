@@ -13,7 +13,7 @@ function HomeVeiculo() {
   useEffect(() => {
     const fetchProprietario = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/veiculo/${cpf}`); 
+        const response = await fetch(`http://localhost:3003/veiculo/${cpf}`);
         if (!response.ok) {
           throw new Error('Erro ao buscar proprietário');
         }
@@ -27,7 +27,7 @@ function HomeVeiculo() {
     };
 
     fetchProprietario();
-  }, [cpf]);
+  });
 
   if (loading) {
     return <p>Carregando...</p>;
@@ -60,16 +60,15 @@ function HomeVeiculo() {
                 </tr>
               </thead>
               <tbody>
-                {proprietario.veiculos.map((veiculo) => (
-                  <tr key={veiculo.cpf}>
-                    <td>{veiculo.placa}</td>
+                {proprietario.map((veiculo) => (
+                  <tr key={veiculo.placa}>
                     <td>{veiculo.marca}</td>
                     <td>{veiculo.modelo}</td>
                     <td>{veiculo.ano}</td>
                     <td>{veiculo.cor}</td>
-                    <td><Link to={`/multas/${veiculo.cpf}`}>📘</Link></td> 
+                    <td><Link to={`/multas/${cpf}`}>📘</Link></td>
                     <td>
-                      <button>✏️</button> 
+                      <button>✏️</button>
                     </td>
                   </tr>
                 ))}

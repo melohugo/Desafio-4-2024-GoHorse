@@ -7,9 +7,9 @@ import BotaoCriar from '../../../components/BotoesForms/BotaoCriar';
 function CriarProprietarioForm() {
     const [nome, setNome] = useState('');
     const [cpf, setCpf] = useState('');
-    const [categoriaCnh, setCategoriaCnh] = useState('');
+    const [tipoCnh, setCategoriaCnh] = useState('');
     const [vencimentoCnh, setVencimentoCnh] = useState('');
-    
+
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ function CriarProprietarioForm() {
         setError(null);
 
         try {
-            const response = await fetch('http://localhost:3000/proprietario/criar', {
+            const response = await fetch('http://localhost:3003/proprietario/criar', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ function CriarProprietarioForm() {
                 body: JSON.stringify({
                     nome,
                     cpf,
-                    categoriaCnh,
+                    tipoCnh,
                     vencimentoCnh,
                 }),
             });
@@ -92,7 +92,7 @@ function CriarProprietarioForm() {
                                     type="text"
                                     name="categoriaCnh"
                                     required
-                                    value={categoriaCnh}
+                                    value={tipoCnh}
                                     onChange={(event) => setCategoriaCnh(event.target.value)}
                                 />
                             </label>
